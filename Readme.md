@@ -1,108 +1,65 @@
-### run
-```
-docker-compose up -build
-```
+JMeter Load Test Dashboard
+This dashboard shows the main metrics gathered during a load test execution with JMeter. This dashboards depends on the [JMeter-InfluxBD-Writer](https://github.com/NovaTecConsulting/JMeter-InfluxDB-Writer/releases) plugin for JMeter, that writes live load test data to an influxDB installation.
 
-### 1. Check Container Status
-Make sure all containers are running properly:
+### Prerequisites
+- JMeter (version 3.0 or higher)
+- Grafana (version 3.1 or higher)
+- influxDB (version 1.0 or higher)
 
-```
-docker ps
-```
-You should see these containers running:
+✅ What You Need to Do
+#### 1. Create your_test_plan
 
-- ```nginx```
+   * Add Backend Listener to the plan.
+   * Set:
 
-- ```jmeter``` (may finish if it's non-looping)
+   * Backend Listener implementation: ```rock.nt.apm.jmeter.JMeterInfluxDBBackendListenerClient```
 
-- ```otel-collector```
+   * Parameters (example):
 
-- ```prometheus```
+      |Name |	Value |
+      |-----|-------|
+      |influxDBHost|localhost|
+      |influxDBPort|8086|
+      |influxDBUser|jmeter|
+      |influxDBPassword|jmeter|
+      |influxDBDatabase|jmeter|
 
-- ```grafana```
-
-If any container crashes, use ```docker logs <container_name>``` to inspect it.
-
-### 2. Verify API Server (Nginx)
-Open your browser and go to:
-
-```
-http://localhost:8080/api/hello
-```
-You should see:
+#### 2. Start the services:
 
 ```
-Hello from Nginx API
-```
-If that works, your API is live and ready to be tested by JMeter.
-
-### 3. View Prometheus Metrics
-Go to:
-
-```
-http://localhost:9090
-```
-- Click "Status > Targets" to check if ```otel-collector:8889``` is being scraped.
-- You can try searching for metrics like:
-  ```
-  scrape_duration_seconds
-  ```
-
-### 4. Access Grafana Dashboard
-Go to:
-
-```
-http://localhost:3000
-```
-- Login with default credentials:
-
-  * Username: ```admin```
-
-  * Password: ```admin```
-
-- Add Prometheus as a data source:
-
-  * Go to **Conecttions** > **Data Sources** 
-
-  * Choose **Prometheus**
-
-  * Set the URL to: ```http://prometheus:9090```
-
-  * Click Save & Test
-
-### 5. Create Grafana Dashboard
-Now that Grafana is connected to Prometheus:
-
-- Click **+** > **Dashboard** > **New dashboard** > **Add visualization** > **Prometheus**
-- Use metrics like:
-  * scrape_duration_seconds
-
-### 6. Review JMeter Results
-If the JMeter container ran and exited, check the results:
-
-```
-docker-compose logs jmeter
-```
-Or view the ```results.jtl``` file in the ```./jmeter/``` folder. You can open it in JMeter GUI to inspect:
-
-- Average response time
-
-- Success/failure rate
-
-- Throughput
-
-### 7. (Optional) Loop JMeter for Continuous Load
-If you want continuous load testing:
-
-Update the JMeter test plan (test-plan.jmx) to loop forever or for a long duration. Then restart JMeter like this:
-
-```
-docker-compose up jmeter
+docker-compose up -d
 ```
 
-## 🛠 To Customize:
-Change thread count: ```<stringProp name="ThreadGroup.num_threads">10</stringProp>```
+#### 3. Access Grafana:
 
-Change duration: ```<stringProp name="LoopController.loops">60</stringProp>```
+- URL: http://localhost:3000
 
-Change the target URL in ```API_URL``` variable if needed
+- Login: admin / admin123
+
+- Add InfluxDB Data Source:
+
+- URL: http://influxdb:8086
+
+- Database: jmeter
+
+- User: jmeter
+
+- Password: jmeter123
+
+#### 4. Import Dashboard:
+
+Use a predefined dashboard like this one:
+[Grafana JMeter Dashboard JSON](https://grafana.com/grafana/dashboards/1152-jmeter-load-test/)
+
+### DIAGRAN
+
+```
+
+|jmeter| --data--> [InflucDB] --data--> |Grafana|
+   |
+   | Http Req
+   |
+   V
+|Nginx|
+
+```
