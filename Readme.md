@@ -13,9 +13,9 @@ This dashboard shows the main metrics gathered during a load test execution with
    * Add Backend Listener to the plan.
    * Set:
 
-   * Backend Listener implementation: ```rock.nt.apm.jmeter.JMeterInfluxDBBackendListenerClient```
+     - Backend Listener implementation: ```rock.nt.apm.jmeter.JMeterInfluxDBBackendListenerClient```
 
-   * Parameters (example):
+     - Parameters (example):
 
       |Name |	Value |
       |-----|-------|
