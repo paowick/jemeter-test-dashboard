@@ -3,7 +3,8 @@ This dashboard shows the main metrics gathered during a load test execution with
 
 ### Prerequisites
 - Jmeter [download](https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.zip) (version 3.0 or higher)
-- Grafana [download](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module&_gl=1*zp5o86*_gcl_au*MjQ0NTMyNTMxLjE3NTQ4MTc3MzE.*_ga*NzE0NjMzNzA0LjE3NTQ4MTc3MzE.*_ga_XJWPQMJYHQ*czE3NTQ4MTc3MzEkbzEkZzEkdDE3NTQ4MTc4NTkkajYwJGwwJGgw)(version 3.1 or higher)
+- Docker [download](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module&_gl=1*zp5o86*_gcl_au*MjQ0NTMyNTMxLjE3NTQ4MTc3MzE.*_ga*NzE0NjMzNzA0LjE3NTQ4MTc3MzE.*_ga_XJWPQMJYHQ*czE3NTQ4MTc3MzEkbzEkZzEkdDE3NTQ4MTc4NTkkajYwJGwwJGgw)
+- Grafana (version 3.1 or higher)
 - influxDB (version 1.0 or higher)
 
 ✅ What You Need to Do
