@@ -5,6 +5,8 @@ This dashboard shows the main metrics gathered during a load test execution with
 - Jmeter [download](https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.zip) (version 3.0 or higher)
   - Download the [JMeter-InfluxBD-Writer](https://github.com/NovatecConsulting/JMeter-InfluxDB-Writer/releases/download/v-1.0/JMeter-InfluxDB-Writer-1.0.jar) and paste the jar into the /lib/ext directory of your JMeter installation. (Then Restart JMeter) 
 - Docker [download](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module&_gl=1*1vxfhp0*_gcl_au*MjQ0NTMyNTMxLjE3NTQ4MTc3MzE.*_ga*NzE0NjMzNzA0LjE3NTQ4MTc3MzE.*_ga_XJWPQMJYHQ*czE3NTQ4MTc3MzEkbzEkZzEkdDE3NTQ4MTc4NTkkajYwJGwwJGgw)
+
+- nodejs download
 - Grafana (version 3.1 or higher)
 - influxDB (version 1.0 or higher)
 
@@ -65,3 +67,15 @@ Use a predefined dashboard like this one:
 |Nginx|
 
 ```
+
+### Set up api
+1. dowmload xampp,  ruen apache and mysql
+2. go tp phpmyadmin
+3. create database name api
+4. run
+```
+npx prisma migrate dev
+npn prisma genarated
+```
+5.run ``` npm run dev ```
+
